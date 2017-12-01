@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
+use App\Contracts\FetcherContract;
+use App\Traits\FetcherContractTools;
 use Exception;
-use App\Contracts\QuoterContract;
-use App\Traits\QuoterContractTools;
 
-class CsvQuoter implements QuoterContract
+class YahooFetcher implements FetcherContract
 {
-    use QuoterContractTools;
+    use FetcherContractTools;
 
     /**
      * Get prices for a set of ticker symbols
@@ -29,7 +29,7 @@ class CsvQuoter implements QuoterContract
                 'status'  => 404,
                 'source'  => '',
                 'title'   => 'No Internet Connection',
-                'details' => 'Service is unavailable without an internet connection'
+                'details' => 'Service is unavailable without an internet connection.'
             ];
 
             return $response;
@@ -54,7 +54,7 @@ class CsvQuoter implements QuoterContract
                 'status'  => 400,
                 'source'  => '',
                 'title'   => 'Invalid Request',
-                'details' => 'Missing ticker symbols'
+                'details' => 'Missing ticker symbols.'
             ];
 
             return $response;
@@ -67,7 +67,7 @@ class CsvQuoter implements QuoterContract
             // Attempt to fetch data
             $csv = @fopen($url, 'r');
             if (empty($csv)) {
-                throw new Exception('Request for quotes returned nothing');
+                throw new Exception('Request for quotes returned nothing.');
             }
 
             // Build response

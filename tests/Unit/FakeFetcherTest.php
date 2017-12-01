@@ -1,20 +1,20 @@
 <?php
 
-use App\Services\FakeQuoter;
+use App\Services\FakeFetcher;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-class FakeQuoterTest extends TestCase
+class FakeFetcherTest extends TestCase
 {
-    use QuoterContractTests;
+    use FetcherContractTests;
 
     /**
      * Get the service used for testing
      *
-     * @return App\Contracts\Quoter
+     * @return App\Contracts\FetcherContract
      */
     protected function getService()
     {
-        return new FakeQuoter;
+        return new FakeFetcher;
     }
 }

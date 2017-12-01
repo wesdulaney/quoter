@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use App\Contracts\QuoterContract;
-use App\Traits\QuoterContractTools;
+use App\Contracts\FetcherContract;
+use App\Traits\FetcherContractTools;
 
-class FakeQuoter implements QuoterContract
+class FakeFetcher implements FetcherContract
 {
-    use QuoterContractTools;
+    use FetcherContractTools;
 
     /**
      * Get prices for a set of ticker symbols
@@ -39,7 +39,7 @@ class FakeQuoter implements QuoterContract
                 'status'  => 400,
                 'source'  => '',
                 'title'   => 'Invalid Request',
-                'details' => 'Missing ticker symbols'
+                'details' => 'Missing ticker symbols.'
             ];
 
             return $response;

@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-trait QuoterContractTools
+trait FetcherContractTools
 {
     /**
      * Prepare an array of tickers from parameters
