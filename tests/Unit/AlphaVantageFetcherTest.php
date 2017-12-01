@@ -1,20 +1,20 @@
 <?php
 
-use App\Services\CsvQuoter;
+use App\Services\AlphaVantageFetcher;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-class CsvQuoterTest extends TestCase
+class AlphaVantageFetcherTest extends TestCase
 {
-    use QuoterContractTests;
+    use FetcherContractTests;
 
     /**
      * Get the service used for testing
      *
-     * @return App\Contracts\Quoter
+     * @return App\Contracts\FetcherContract
      */
     protected function getService()
     {
-        return new CsvQuoter;
+        return new AlphaVantageFetcher;
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-trait QuoterContractTests
+trait FetcherContractTests
 {
     /**
      * Get the service used for these tests
      *
-     * @return App\Contracts\Quoter
+     * @return App\Contracts\FetcherContract
      */
     abstract protected function getService();
 
@@ -46,7 +46,7 @@ trait QuoterContractTests
         $service = $this->getService();
 
         // Arrange a string with tickers separated by commas
-        $tickers = 'VCLT, IAU, SLV';
+        $tickers = 'VCLT, IAU, SLV, ^SPX';
 
         // Act to get prices
         $response = $service->getPrices($tickers);
@@ -61,6 +61,7 @@ trait QuoterContractTests
         $this->assertTrue($data->contains('ticker', 'VCLT'));
         $this->assertTrue($data->contains('ticker', 'IAU'));
         $this->assertTrue($data->contains('ticker', 'SLV'));
+        $this->assertTrue($data->contains('ticker', '^SPX'));
 
         // Assert that prices are set
         $filtered = $data->where('ticker', 'VCLT')->first();
@@ -70,6 +71,9 @@ trait QuoterContractTests
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'SLV')->first();
+        $this->assertGreaterThan(0, $filtered['price']);
+
+        $filtered = $data->where('ticker', '^SPX')->first();
         $this->assertGreaterThan(0, $filtered['price']);
     }
 
@@ -82,7 +86,7 @@ trait QuoterContractTests
         $service = $this->getService();
 
         // Arrange a string with tickers separated by commas
-        $tickers = 'VCLT IAU SLV';
+        $tickers = 'VCLT IAU SLV ^SPX';
 
         // Act to get prices
         $response = $service->getPrices($tickers);
@@ -97,6 +101,7 @@ trait QuoterContractTests
         $this->assertTrue($data->contains('ticker', 'VCLT'));
         $this->assertTrue($data->contains('ticker', 'IAU'));
         $this->assertTrue($data->contains('ticker', 'SLV'));
+        $this->assertTrue($data->contains('ticker', '^SPX'));
 
         // Assert that prices are set
         $filtered = $data->where('ticker', 'VCLT')->first();
@@ -106,6 +111,9 @@ trait QuoterContractTests
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'SLV')->first();
+        $this->assertGreaterThan(0, $filtered['price']);
+
+        $filtered = $data->where('ticker', '^SPX')->first();
         $this->assertGreaterThan(0, $filtered['price']);
     }
 
@@ -118,7 +126,7 @@ trait QuoterContractTests
         $service = $this->getService();
 
         // Arrange an array of tickers
-        $tickers = ['VCLT', 'IAU', 'SLV'];
+        $tickers = ['VCLT', 'IAU', 'SLV', '^SPX'];
 
         // Act to get prices
         $response = $service->getPrices($tickers);
@@ -133,6 +141,7 @@ trait QuoterContractTests
         $this->assertTrue($data->contains('ticker', 'VCLT'));
         $this->assertTrue($data->contains('ticker', 'IAU'));
         $this->assertTrue($data->contains('ticker', 'SLV'));
+        $this->assertTrue($data->contains('ticker', '^SPX'));
 
         // Assert that prices are set
         $filtered = $data->where('ticker', 'VCLT')->first();
@@ -142,6 +151,9 @@ trait QuoterContractTests
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'SLV')->first();
+        $this->assertGreaterThan(0, $filtered['price']);
+
+        $filtered = $data->where('ticker', '^SPX')->first();
         $this->assertGreaterThan(0, $filtered['price']);
     }
 
@@ -154,7 +166,7 @@ trait QuoterContractTests
         $service = $this->getService();
 
         // Act to get prices on a set of tickers
-        $response = $service->getPrices('VCLT', 'IAU', 'SLV');
+        $response = $service->getPrices('VCLT', 'IAU', 'SLV', '^SPX');
 
         // Assert response status
         $this->assertEquals(200, $response['status']);
@@ -166,6 +178,7 @@ trait QuoterContractTests
         $this->assertTrue($data->contains('ticker', 'VCLT'));
         $this->assertTrue($data->contains('ticker', 'IAU'));
         $this->assertTrue($data->contains('ticker', 'SLV'));
+        $this->assertTrue($data->contains('ticker', '^SPX'));
 
         // Assert that prices are set
         $filtered = $data->where('ticker', 'VCLT')->first();
@@ -175,6 +188,9 @@ trait QuoterContractTests
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'SLV')->first();
+        $this->assertGreaterThan(0, $filtered['price']);
+
+        $filtered = $data->where('ticker', '^SPX')->first();
         $this->assertGreaterThan(0, $filtered['price']);
     }
 

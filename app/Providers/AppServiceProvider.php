@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Contracts\QuoterContract;
-use App\Services\CsvQuoter;
+use App\Contracts\FetcherContract;
+use App\Services\AlphaVantageFetcher;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,11 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Bind the QuoterContract interface to an implementation
-        $this->app->bind('App\Services\CsvQuoter', function () {
-            return new CsvQuoter();
-        });
-
-        $this->app->bind('App\Contracts\QuoterContract', 'App\Services\CsvQuoter');
+        // Bind the FetcherContract interface to an implementation
+        $this->app->bind(FetcherContract::class, AlphaVantageFetcher::class);
     }
 }

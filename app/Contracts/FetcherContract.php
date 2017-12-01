@@ -7,7 +7,7 @@ namespace App\Contracts;
  *
  * method array getPrices($params)
  */
-interface QuoterContract
+interface FetcherContract
 {
     /**
      * Get prices for a set of ticker symbols

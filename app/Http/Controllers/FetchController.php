@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\QuoterContract;
+use App\Contracts\FetcherContract;
 use Illuminate\Http\Request;
 
 class FetchController extends Controller
@@ -10,19 +10,19 @@ class FetchController extends Controller
     /**
      * Quoter implementation
      *
-     * @var App\Contracts\QuoterContract
+     * @var App\Contracts\FetcherContract
      */
-    protected $quoter;
+    protected $fetcher;
 
     /**
      * Create a new controller instance.
      *
-     * @param App\Contract\QuoterContract $quoter
+     * @param App\Contract\FetcherContract $fetcher
      * @return void
      */
-    public function __construct(QuoterContract $quoter)
+    public function __construct(FetcherContract $fetcher)
     {
-        $this->quoter = $quoter;
+        $this->fetcher = $fetcher;
     }
 
     /**
@@ -34,6 +34,6 @@ class FetchController extends Controller
     public function index(Request $request)
     {
         // Get prices
-        return $this->quoter->getPrices($request->input('t'));
+        return $this->fetcher->getPrices($request->input('t'));
     }
 }
