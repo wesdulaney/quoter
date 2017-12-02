@@ -118,29 +118,44 @@ class AlphaVantageFetcher implements FetcherContract
 
     /**
      * Request price info from remote service
-     * 
+     *
      * @param  string $ticker
      * @return array
      */
     protected function query($ticker)
     {
+        // Init data
+        $data = ['ticker' => $ticker, 'price' => null, 'errors' => null];
+
         // Set params for remote fetch
         $params = [
-            'function' => 'TIME_SERIES_INTRADAY',
-            'interval' => '1min',
+            'function' => 'TIME_SERIES_DAILY',
             'symbol'   => $ticker,
             'apikey'   => $this->api_key
         ];
 
-        // Request
-        $response = $this->client->get($this->api_url . http_build_query($params));
-        
-        // Parse result
-        $result = json_decode($response->getBody()->getContents(), true);
-        $index  = $result['Meta Data']['3. Last Refreshed'];
-        $last   = $result['Time Series (1min)'][$index];
+        try {
+            // Request
+            $response = $this->client->get($this->api_url . http_build_query($params));
+            $result   = json_decode($response->getBody()->getContents(), true);
 
-        // Output
-        return ['ticker' => $ticker, 'price'  => round(floatval($last['4. close']), 2)];
+            // Parse result
+            if (empty($result['Meta Data'])) {
+                throw new Exception('Missing meta data.');
+            }
+            if (empty($result['Time Series (Daily)'])) {
+                throw new Exception('Missing time series.');
+            }
+
+            $index = $result['Meta Data']['3. Last Refreshed'];
+            $last  = $result['Time Series (Daily)'][$index];
+
+            // Update data
+            $data['price'] = round(floatval($last['4. close']), 2);
+        } catch (Exception $e) {
+            $data['errors'] = $e->getMessage();
+        }
+
+        return $data;
     }
 }
