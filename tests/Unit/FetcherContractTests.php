@@ -34,6 +34,7 @@ trait FetcherContractTests
 
         // Assert that price is set
         $filtered = $data->where('ticker', 'VCLT')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
     }
 
@@ -65,15 +66,19 @@ trait FetcherContractTests
 
         // Assert that prices are set
         $filtered = $data->where('ticker', 'VCLT')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'IAU')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'SLV')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', '^SPX')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
     }
 
@@ -105,15 +110,19 @@ trait FetcherContractTests
 
         // Assert that prices are set
         $filtered = $data->where('ticker', 'VCLT')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'IAU')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'SLV')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', '^SPX')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
     }
 
@@ -145,15 +154,19 @@ trait FetcherContractTests
 
         // Assert that prices are set
         $filtered = $data->where('ticker', 'VCLT')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'IAU')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'SLV')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', '^SPX')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
     }
 
@@ -182,15 +195,19 @@ trait FetcherContractTests
 
         // Assert that prices are set
         $filtered = $data->where('ticker', 'VCLT')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'IAU')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', 'SLV')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
 
         $filtered = $data->where('ticker', '^SPX')->first();
+        $this->assertNotNull($filtered['price']);
         $this->assertGreaterThan(0, $filtered['price']);
     }
 
